@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem", "Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.Tests", "HotelManagementSystem.Tests\HotelManagementSystem.Tests.csproj", "{58215510-3E07-46C1-88B1-50D6DBF95FCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{430101DB-A17D-469D-8B56-4FF8EEAAAB77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.DAL", "DAL\HotelManagementSystem.DAL.csproj", "{430101DB-A17D-469D-8B56-4FF8EEAAAB77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{D3BF1858-607E-400B-BE38-C127D52730B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagementSystem.BLL", "BLL\HotelManagementSystem.BLL.csproj", "{D3BF1858-607E-400B-BE38-C127D52730B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
