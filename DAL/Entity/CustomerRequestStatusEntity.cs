@@ -19,6 +19,12 @@ namespace HotelManagementSystem.DAL.Entity
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        ///     Delete flag
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
+
         public ICollection<CustomerRequestEntity> CustomerRequestEntities { get; set; }
     }
 }

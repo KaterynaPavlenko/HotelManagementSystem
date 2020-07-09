@@ -21,6 +21,12 @@ namespace HotelManagementSystem.DAL.Entity
         [StringLength(30, MinimumLength = 3)]
         public string LastName { get; set; }
 
+        /// <summary>
+        ///     Delete flag
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<HotelUserEntity> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

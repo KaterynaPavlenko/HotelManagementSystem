@@ -32,6 +32,11 @@ namespace HotelManagementSystem.DAL.Entity
         /// </summary>
         public int RoomId { get; set; }
 
+        /// <summary>
+        ///     Delete flag
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
         public bool Payment { get; set; }
         public virtual HotelUserEntity HotelUser { get; set; }
         public virtual RoomEntity Room { get; set; }
