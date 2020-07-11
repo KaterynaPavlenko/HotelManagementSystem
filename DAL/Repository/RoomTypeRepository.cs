@@ -63,42 +63,69 @@ namespace HotelManagementSystem.DAL.Repository
         ///     Adding a room type to the database
         /// </summary>
         /// <param name="roomType">RoomType object</param>
-        public void Create(RoomType roomType)
+        public bool Create(RoomType roomType)
         {
-            var entity = new RoomTypeEntity
+            try
             {
-                Id = roomType.Id,
-                Name = roomType.Name
-            };
-            _hotelDbContext.RoomTypes.Add(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new RoomTypeEntity
+                {
+                    Id = roomType.Id,
+                    Name = roomType.Name
+                };
+                _hotelDbContext.RoomTypes.Add(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+          
         }
 
         /// <summary>
         ///     Updating a room type in the database
         /// </summary>
         /// <param name="roomType">RoomType object</param>
-        public void Update(RoomType roomType)
+        public bool Update(RoomType roomType)
         {
-            var entity = new RoomTypeEntity
+            try
             {
-                Id = roomType.Id,
-                Name = roomType.Name
-            };
-            _hotelDbContext.RoomTypes.AddOrUpdate(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new RoomTypeEntity
+                {
+                    Id = roomType.Id,
+                    Name = roomType.Name
+                };
+                _hotelDbContext.RoomTypes.AddOrUpdate(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        
         }
 
         /// <summary>
         ///     Removing a room type by id in the database
         /// </summary>
         /// <param name="id">Room Type id</param>
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            var roomType = _hotelDbContext.RoomTypes.Find(id);
-            if (roomType != null)
-                _hotelDbContext.RoomTypes.Remove(roomType);
-            _hotelDbContext.SaveChanges();
+            try
+            {
+                var roomType = _hotelDbContext.RoomTypes.Find(id);
+                if (roomType != null)
+                    _hotelDbContext.RoomTypes.Remove(roomType);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        
         }
     }
 }

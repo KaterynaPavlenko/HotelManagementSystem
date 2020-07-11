@@ -55,40 +55,69 @@ namespace HotelManagementSystem.DAL.Repository
         ///     Adding a room status to the database
         /// </summary>
         /// <param name="roomStatus">RoomStatus entity</param>
-        public void Create(RoomStatus roomStatus)
+        public bool Create(RoomStatus roomStatus)
         {
-            var entity = new RoomStatusEntity
+            try
             {
-                Id = roomStatus.Id,
-                Name = roomStatus.Name
-            };
-            _hotelDbContext.RoomStatuses.Add(entity);
+                var entity = new RoomStatusEntity
+                {
+                    Id = roomStatus.Id,
+                    Name = roomStatus.Name
+                };
+                _hotelDbContext.RoomStatuses.Add(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+           
         }
 
         /// <summary>
         ///     Updating a room status in the database
         /// </summary>
         /// <param name="roomStatus">RoomStatus entity</param>
-        public void Update(RoomStatus roomStatus)
+        public bool Update(RoomStatus roomStatus)
         {
-            var entity = new RoomStatusEntity
+            try
             {
-                Id = roomStatus.Id,
-                Name = roomStatus.Name
-            };
-            _hotelDbContext.RoomStatuses.AddOrUpdate(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new RoomStatusEntity
+                {
+                    Id = roomStatus.Id,
+                    Name = roomStatus.Name
+                };
+                _hotelDbContext.RoomStatuses.AddOrUpdate(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+         
         }
 
         /// <summary>
         ///     Removing a room status by id in the database
         /// </summary>
         /// <param name="id">Room Status id</param>
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            var roomStatus = _hotelDbContext.RoomStatuses.Find(id);
-            if (roomStatus != null)
-                _hotelDbContext.RoomStatuses.Remove(roomStatus);
+            try
+            {
+                var roomStatus = _hotelDbContext.RoomStatuses.Find(id);
+                if (roomStatus != null)
+                    _hotelDbContext.RoomStatuses.Remove(roomStatus);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+          
         }
     }
 }

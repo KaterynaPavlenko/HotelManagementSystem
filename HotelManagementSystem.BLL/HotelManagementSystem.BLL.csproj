@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,9 +49,24 @@
     <Compile Include="Data\Room.cs" />
     <Compile Include="Data\RoomStatus.cs" />
     <Compile Include="Data\RoomType.cs" />
+    <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\ServiceInterfaces\IBookingService.cs" />
+    <Compile Include="Interfaces\ServiceInterfaces\IConfirmationService.cs" />
+    <Compile Include="Interfaces\ServiceInterfaces\ICustomerRequestServices.cs" />
+    <Compile Include="Interfaces\ServiceInterfaces\ICustomerRequestStatusService.cs" />
+    <Compile Include="Interfaces\ServiceInterfaces\IRoomService.cs" />
+    <Compile Include="Interfaces\ServiceInterfaces\IRoomStatusService.cs" />
+    <Compile Include="Interfaces\ServiceInterfaces\IRoomTypeServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BookingService.cs" />
+    <Compile Include="Services\ConfirmationService.cs" />
+    <Compile Include="Services\CustomerRequestService.cs" />
+    <Compile Include="Services\CustomerRequestStatusService.cs" />
+    <Compile Include="Services\RoomService.cs" />
+    <Compile Include="Services\RoomStatusService.cs" />
+    <Compile Include="Services\RoomTypeService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

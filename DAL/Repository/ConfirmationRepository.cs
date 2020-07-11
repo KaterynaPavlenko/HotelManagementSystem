@@ -60,44 +60,70 @@ namespace HotelManagementSystem.DAL.Repository
         ///     Adding a confirmation to the database
         /// </summary>
         /// <param name="confirmation">Confirmation entity</param>
-        public void Create(Confirmation confirmation)
+        public bool Create(Confirmation confirmation)
         {
-            var entity = new ConfirmationEntity
+            try
             {
-                Id = confirmation.CustomerRequestId,
-                CustomerRequestId = confirmation.CustomerRequestId,
-                RoomId = confirmation.RoomId
-            };
-            _hotelDbContext.Confirmations.Add(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new ConfirmationEntity
+                {
+                    Id = confirmation.CustomerRequestId,
+                    CustomerRequestId = confirmation.CustomerRequestId,
+                    RoomId = confirmation.RoomId
+                };
+                _hotelDbContext.Confirmations.Add(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+           
         }
 
         /// <summary>
         ///     Updating a confirmation in the database
         /// </summary>
         /// <param name="confirmation">Confirmation entity</param>
-        public void Update(Confirmation confirmation)
+        public bool Update(Confirmation confirmation)
         {
-            var entity = new Confirmation
+            try
             {
-                Id = confirmation.CustomerRequestId,
-                CustomerRequestId = confirmation.CustomerRequestId,
-                RoomId = confirmation.RoomId
-            };
-            _hotelDbContext.Entry(entity).State = EntityState.Modified;
-            _hotelDbContext.SaveChanges();
+                var entity = new Confirmation
+                {
+                    Id = confirmation.CustomerRequestId,
+                    CustomerRequestId = confirmation.CustomerRequestId,
+                    RoomId = confirmation.RoomId
+                };
+                _hotelDbContext.Entry(entity).State = EntityState.Modified;
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
 
         /// <summary>
         ///     Removing a confirmation by id in the database
         /// </summary>
         /// <param name="id">Confirmation id</param>
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            var confirmationEntity = _hotelDbContext.Confirmations.Find(id);
-            if (confirmationEntity != null)
-                _hotelDbContext.Confirmations.Remove(confirmationEntity);
-            _hotelDbContext.SaveChanges();
+            try
+            {
+                var confirmationEntity = _hotelDbContext.Confirmations.Find(id);
+                if (confirmationEntity != null)
+                    _hotelDbContext.Confirmations.Remove(confirmationEntity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

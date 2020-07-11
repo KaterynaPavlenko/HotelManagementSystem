@@ -82,56 +82,81 @@ namespace HotelManagementSystem.DAL.Repository
         ///     Adding a room to the database
         /// </summary>
         /// <param name="room">Room entity</param>
-        public void Create(Room room)
+        public bool Create(Room room)
         {
-            if (room == null) throw new NullReferenceException();
-            var entity = new RoomEntity
+            try
             {
-                Id = room.Id,
-                RoomDescription = room.RoomDescription,
-                RoomImage = room.RoomImage,
-                RoomNumber = room.RoomNumber,
-                RoomPriceForOneNight = room.RoomPriceForOneNight,
-                Sleeps = room.Sleeps,
-                RoomTypeId = room.RoomTypeId,
-                RoomStatusId = room.RoomStatusId
-            };
-            _hotelDbContext.Rooms.Add(entity);
-            _hotelDbContext.SaveChanges();
+                if (room == null) throw new NullReferenceException();
+                var entity = new RoomEntity
+                {
+                    Id = room.Id,
+                    RoomDescription = room.RoomDescription,
+                    RoomImage = room.RoomImage,
+                    RoomNumber = room.RoomNumber,
+                    RoomPriceForOneNight = room.RoomPriceForOneNight,
+                    Sleeps = room.Sleeps,
+                    RoomTypeId = room.RoomTypeId,
+                    RoomStatusId = room.RoomStatusId
+                };
+                _hotelDbContext.Rooms.Add(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
         ///     Updating a room in the database
         /// </summary>
         /// <param name="room">Room entity</param>
-        public void Update(Room room)
+        public bool Update(Room room)
         {
-            var roomEntity = new RoomEntity
+            try
             {
-                Id = room.Id,
-                RoomDescription = room.RoomDescription,
-                RoomImage = room.RoomImage,
-                RoomNumber = room.RoomNumber,
-                RoomPriceForOneNight = room.RoomPriceForOneNight,
-                Sleeps = room.Sleeps,
-                RoomTypeId = room.RoomTypeId,
-                RoomStatusId = room.RoomStatusId
-            };
-            _hotelDbContext.Rooms.AddOrUpdate(roomEntity);
-            _hotelDbContext.SaveChanges();
+                var roomEntity = new RoomEntity
+                {
+                    Id = room.Id,
+                    RoomDescription = room.RoomDescription,
+                    RoomImage = room.RoomImage,
+                    RoomNumber = room.RoomNumber,
+                    RoomPriceForOneNight = room.RoomPriceForOneNight,
+                    Sleeps = room.Sleeps,
+                    RoomTypeId = room.RoomTypeId,
+                    RoomStatusId = room.RoomStatusId
+                };
+                _hotelDbContext.Rooms.AddOrUpdate(roomEntity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+           
         }
 
         /// <summary>
         ///     Removing a room by id in the database
         /// </summary>
         /// <param name="id">Room id</param>
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            var roomEntity = _hotelDbContext.Rooms.Find(id);
-            if (roomEntity != null)
+            try
             {
-                _hotelDbContext.Rooms.Remove(roomEntity);
-                _hotelDbContext.SaveChanges();
+                var roomEntity = _hotelDbContext.Rooms.Find(id);
+                if (roomEntity != null)
+                {
+                    _hotelDbContext.Rooms.Remove(roomEntity);
+                    _hotelDbContext.SaveChanges();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

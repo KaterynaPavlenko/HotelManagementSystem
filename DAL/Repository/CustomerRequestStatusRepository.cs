@@ -57,42 +57,68 @@ namespace HotelManagementSystem.DAL.Repository
         ///     Adding a customer request status to the database
         /// </summary>
         /// <param name="customerRequestStatus">CustomerRequestStatus entity</param>
-        public void Create(CustomerRequestStatus customerRequestStatus)
+        public bool Create(CustomerRequestStatus customerRequestStatus)
         {
-            var entity = new CustomerRequestStatusEntity
+            try
             {
-                Id = customerRequestStatus.Id,
-                Name = customerRequestStatus.Name
-            };
-            _hotelDbContext.CustomerRequestStatuses.Add(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new CustomerRequestStatusEntity
+                {
+                    Id = customerRequestStatus.Id,
+                    Name = customerRequestStatus.Name
+                };
+                _hotelDbContext.CustomerRequestStatuses.Add(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+          
         }
 
         /// <summary>
         ///     Updating a customer request status in the database
         /// </summary>
         /// <param name="customerRequestStatus">CustomerRequestStatus entity</param>
-        public void Update(CustomerRequestStatus customerRequestStatus)
+        public bool Update(CustomerRequestStatus customerRequestStatus)
         {
-            var entity = new CustomerRequestStatusEntity
+            try
             {
-                Id = customerRequestStatus.Id,
-                Name = customerRequestStatus.Name
-            };
-            _hotelDbContext.CustomerRequestStatuses.AddOrUpdate(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new CustomerRequestStatusEntity
+                {
+                    Id = customerRequestStatus.Id,
+                    Name = customerRequestStatus.Name
+                };
+                _hotelDbContext.CustomerRequestStatuses.AddOrUpdate(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+          
         }
 
         /// <summary>
         ///     Removing a customer request status by id in the database
         /// </summary>
         /// <param name="id">CustomerRequestStatus id</param>
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            var status = _hotelDbContext.CustomerRequestStatuses.Find(id);
-            if (status != null)
-                _hotelDbContext.CustomerRequestStatuses.Remove(status);
-            _hotelDbContext.SaveChanges();
+            try
+            {
+                var status = _hotelDbContext.CustomerRequestStatuses.Find(id);
+                if (status != null)
+                    _hotelDbContext.CustomerRequestStatuses.Remove(status);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

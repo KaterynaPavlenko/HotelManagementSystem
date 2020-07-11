@@ -80,52 +80,78 @@ namespace HotelManagementSystem.DAL.Repository
         ///     Adding a customer request to the database
         /// </summary>
         /// <param name="customerRequest">CustomerRequest entity</param>
-        public void Create(CustomerRequest customerRequest)
+        public bool Create(CustomerRequest customerRequest)
         {
-            var entity = new CustomerRequestEntity
+            try
             {
-                Id = customerRequest.Id,
-                DateFrom = customerRequest.DateFrom,
-                DateTo = customerRequest.DateTo,
-                HotelUserId = customerRequest.HotelUserId,
-                RoomTypeId = customerRequest.RoomTypeId,
-                CustomerRequestStatusId = customerRequest.CustomerRequestStatusId,
-                Sleeps = customerRequest.Sleeps
-            };
-            _hotelDbContext.CustomerRequests.Add(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new CustomerRequestEntity
+                {
+                    Id = customerRequest.Id,
+                    DateFrom = customerRequest.DateFrom,
+                    DateTo = customerRequest.DateTo,
+                    HotelUserId = customerRequest.HotelUserId,
+                    RoomTypeId = customerRequest.RoomTypeId,
+                    CustomerRequestStatusId = customerRequest.CustomerRequestStatusId,
+                    Sleeps = customerRequest.Sleeps
+                };
+                _hotelDbContext.CustomerRequests.Add(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
 
         /// <summary>
         ///     Updating a customer request in the database
         /// </summary>
         /// <param name="customerRequest">CustomerRequest entity</param>
-        public void Update(CustomerRequest customerRequest)
+        public bool Update(CustomerRequest customerRequest)
         {
-            var entity = new CustomerRequestEntity
+            try
             {
-                Id = customerRequest.Id,
-                DateFrom = customerRequest.DateFrom,
-                DateTo = customerRequest.DateTo,
-                HotelUserId = customerRequest.HotelUserId,
-                RoomTypeId = customerRequest.RoomTypeId,
-                CustomerRequestStatusId = customerRequest.CustomerRequestStatusId,
-                Sleeps = customerRequest.Sleeps
-            };
-            _hotelDbContext.CustomerRequests.AddOrUpdate(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new CustomerRequestEntity
+                {
+                    Id = customerRequest.Id,
+                    DateFrom = customerRequest.DateFrom,
+                    DateTo = customerRequest.DateTo,
+                    HotelUserId = customerRequest.HotelUserId,
+                    RoomTypeId = customerRequest.RoomTypeId,
+                    CustomerRequestStatusId = customerRequest.CustomerRequestStatusId,
+                    Sleeps = customerRequest.Sleeps
+                };
+                _hotelDbContext.CustomerRequests.AddOrUpdate(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
         ///     Removing a customer request by id in the database
         /// </summary>
         /// <param name="id">CustomerRequest id</param>
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            var customerRequestEntity = _hotelDbContext.CustomerRequests.Find(id);
-            if (customerRequestEntity != null)
-                _hotelDbContext.CustomerRequests.Remove(customerRequestEntity);
-            _hotelDbContext.SaveChanges();
+            try
+            {
+                var customerRequestEntity = _hotelDbContext.CustomerRequests.Find(id);
+                if (customerRequestEntity != null)
+                    _hotelDbContext.CustomerRequests.Remove(customerRequestEntity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+           
         }
     }
 }

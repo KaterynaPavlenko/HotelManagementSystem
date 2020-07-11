@@ -63,19 +63,27 @@ namespace HotelManagementSystem.DAL.Repository
         ///     Adding a booking to the database
         /// </summary>
         /// <param name="booking">Booking Entity</param>
-        public void Create(Booking booking)
+        public bool Create(Booking booking)
         {
-            var entity = new BookingEntity
+            try
             {
-                DateTo = booking.DateTo,
-                DateFrom = booking.DateFrom,
-                TotalPrice = booking.TotalPrice,
-                HotelUserId = booking.HotelUserId,
-                RoomId = booking.RoomId,
-                Payment = booking.Payment
-            };
-
-            _hotelDbContext.Bookings.Add(entity);
+                var entity = new BookingEntity
+                {
+                    DateTo = booking.DateTo,
+                    DateFrom = booking.DateFrom,
+                    TotalPrice = booking.TotalPrice,
+                    HotelUserId = booking.HotelUserId,
+                    RoomId = booking.RoomId,
+                    Payment = booking.Payment
+                };
+                _hotelDbContext.Bookings.Add(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 
@@ -83,32 +91,47 @@ namespace HotelManagementSystem.DAL.Repository
         ///     Updating a booking in the database
         /// </summary>
         /// <param name="booking">Booking Entity</param>
-        public void Update(Booking booking)
+        public bool Update(Booking booking)
         {
-            var entity = new BookingEntity
+            try
             {
-                DateTo = booking.DateTo,
-                DateFrom = booking.DateFrom,
-                TotalPrice = booking.TotalPrice,
-                HotelUserId = booking.HotelUserId,
-                RoomId = booking.RoomId,
-                Payment = booking.Payment
-            };
-
-            _hotelDbContext.Bookings.AddOrUpdate(entity);
-            _hotelDbContext.SaveChanges();
+                var entity = new BookingEntity
+                {
+                    DateTo = booking.DateTo,
+                    DateFrom = booking.DateFrom,
+                    TotalPrice = booking.TotalPrice,
+                    HotelUserId = booking.HotelUserId,
+                    RoomId = booking.RoomId,
+                    Payment = booking.Payment
+                };
+                _hotelDbContext.Bookings.AddOrUpdate(entity);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
         ///     Removing a booking by id in the database
         /// </summary>
         /// <param name="id">Booking id</param>
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            var booking = _hotelDbContext.Bookings.Find(id);
-            if (booking != null)
-                _hotelDbContext.Bookings.Remove(booking);
-            _hotelDbContext.SaveChanges();
+            try
+            {
+                var booking = _hotelDbContext.Bookings.Find(id);
+                if (booking != null)
+                    _hotelDbContext.Bookings.Remove(booking);
+                _hotelDbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
