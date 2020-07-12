@@ -47,6 +47,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.Confirmations.Create(confirmation);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -65,6 +67,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.Confirmations.Update(confirmation);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -83,6 +87,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.Confirmations.Delete(id);
+                _unitOfWork.Save();
+
             }
             catch
             {

@@ -77,7 +77,6 @@ namespace HotelManagementSystem.DAL.Repository
                     Payment = booking.Payment
                 };
                 _hotelDbContext.Bookings.Add(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -105,7 +104,6 @@ namespace HotelManagementSystem.DAL.Repository
                     Payment = booking.Payment
                 };
                 _hotelDbContext.Bookings.AddOrUpdate(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -125,7 +123,6 @@ namespace HotelManagementSystem.DAL.Repository
                 var booking = _hotelDbContext.Bookings.Find(id);
                 if (booking != null)
                     _hotelDbContext.Bookings.Remove(booking);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch

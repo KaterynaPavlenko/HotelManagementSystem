@@ -47,6 +47,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.CustomerRequests.Create(customerRequest);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -65,6 +67,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.CustomerRequests.Update(customerRequest);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -83,6 +87,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.CustomerRequests.Delete(id);
+                _unitOfWork.Save();
+
             }
             catch
             {

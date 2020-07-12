@@ -61,11 +61,9 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new RoomStatusEntity
                 {
-                    Id = roomStatus.Id,
                     Name = roomStatus.Name
                 };
                 _hotelDbContext.RoomStatuses.Add(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -89,7 +87,6 @@ namespace HotelManagementSystem.DAL.Repository
                     Name = roomStatus.Name
                 };
                 _hotelDbContext.RoomStatuses.AddOrUpdate(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -110,7 +107,6 @@ namespace HotelManagementSystem.DAL.Repository
                 var roomStatus = _hotelDbContext.RoomStatuses.Find(id);
                 if (roomStatus != null)
                     _hotelDbContext.RoomStatuses.Remove(roomStatus);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch

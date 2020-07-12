@@ -69,11 +69,9 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new RoomTypeEntity
                 {
-                    Id = roomType.Id,
                     Name = roomType.Name
                 };
                 _hotelDbContext.RoomTypes.Add(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -97,7 +95,6 @@ namespace HotelManagementSystem.DAL.Repository
                     Name = roomType.Name
                 };
                 _hotelDbContext.RoomTypes.AddOrUpdate(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -118,7 +115,6 @@ namespace HotelManagementSystem.DAL.Repository
                 var roomType = _hotelDbContext.RoomTypes.Find(id);
                 if (roomType != null)
                     _hotelDbContext.RoomTypes.Remove(roomType);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch

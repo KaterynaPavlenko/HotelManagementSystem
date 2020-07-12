@@ -9,14 +9,15 @@ namespace HotelManagementSystem.BLL.Services
     public class RoomService : IRoomService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ModelStateDictionary _modelState;
+        private readonly ModelStateDictionary _modelState;
 
         /// <summary>
         ///     Initializes a new instance of the Unit Of Work
         /// </summary>
         /// <param name="uow"></param>
-        public RoomService(IUnitOfWork uow)
+        public RoomService(IUnitOfWork uow, ModelStateDictionary modelState)
         {
+            _modelState = modelState;
             _unitOfWork = uow;
         }
 
@@ -52,6 +53,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.Rooms.Create(room);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -67,9 +70,14 @@ namespace HotelManagementSystem.BLL.Services
         /// <param name="room">Room entity</param>
         public bool Update(Room room)
         {
+            // Validation 
+            if (!ValidateRoom(room))
+                return false;
             try
             {
                 _unitOfWork.Rooms.Update(room);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -88,6 +96,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.Rooms.Delete(id);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -103,12 +113,8 @@ namespace HotelManagementSystem.BLL.Services
         /// <returns></returns>
         protected bool ValidateRoom(Room roomToValidate)
         {
-            if (roomToValidate.RoomType.Trim().Length == 0)
-                _modelState.AddModelError("RoomType", "Room type is required.");
             if (roomToValidate.RoomDescription.Trim().Length == 0)
                 _modelState.AddModelError("RoomDescription", "Room description is required.");
-            if (roomToValidate.RoomStatus.Trim().Length == 0)
-                _modelState.AddModelError("RoomStatus", "Room status is required.");
             if (roomToValidate.RoomNumber.Trim().Length == 0)
                 _modelState.AddModelError("RoomNumber", "Room number is required.");
             if (roomToValidate.Sleeps < 0)

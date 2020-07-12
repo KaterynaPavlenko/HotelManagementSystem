@@ -66,12 +66,10 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new ConfirmationEntity
                 {
-                    Id = confirmation.CustomerRequestId,
                     CustomerRequestId = confirmation.CustomerRequestId,
                     RoomId = confirmation.RoomId
                 };
                 _hotelDbContext.Confirmations.Add(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -96,7 +94,6 @@ namespace HotelManagementSystem.DAL.Repository
                     RoomId = confirmation.RoomId
                 };
                 _hotelDbContext.Entry(entity).State = EntityState.Modified;
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -117,7 +114,6 @@ namespace HotelManagementSystem.DAL.Repository
                 var confirmationEntity = _hotelDbContext.Confirmations.Find(id);
                 if (confirmationEntity != null)
                     _hotelDbContext.Confirmations.Remove(confirmationEntity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch

@@ -9,15 +9,16 @@ namespace HotelManagementSystem.BLL.Services
     public class RoomTypeService : IRoomTypeServices
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ModelStateDictionary _modelState;
+        private readonly ModelStateDictionary _modelState;
 
         /// <summary>
         ///     Initializes a new instance of the Unit Of Work
         /// </summary>
         /// <param name="uow"></param>
-        public RoomTypeService(IUnitOfWork uow)
+        public RoomTypeService(IUnitOfWork uow, ModelStateDictionary modelState)
         {
             _unitOfWork = uow;
+            _modelState = modelState;
         }
 
         /// <summary>
@@ -52,6 +53,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.RoomTypes.Create(roomType);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -70,6 +73,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.RoomTypes.Update(roomType);
+                _unitOfWork.Save();
+
             }
             catch
             {
@@ -88,6 +93,8 @@ namespace HotelManagementSystem.BLL.Services
             try
             {
                 _unitOfWork.RoomTypes.Delete(id);
+                _unitOfWork.Save();
+
             }
             catch
             {

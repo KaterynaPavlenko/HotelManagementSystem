@@ -86,7 +86,6 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new CustomerRequestEntity
                 {
-                    Id = customerRequest.Id,
                     DateFrom = customerRequest.DateFrom,
                     DateTo = customerRequest.DateTo,
                     HotelUserId = customerRequest.HotelUserId,
@@ -95,7 +94,6 @@ namespace HotelManagementSystem.DAL.Repository
                     Sleeps = customerRequest.Sleeps
                 };
                 _hotelDbContext.CustomerRequests.Add(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -124,7 +122,6 @@ namespace HotelManagementSystem.DAL.Repository
                     Sleeps = customerRequest.Sleeps
                 };
                 _hotelDbContext.CustomerRequests.AddOrUpdate(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -144,7 +141,6 @@ namespace HotelManagementSystem.DAL.Repository
                 var customerRequestEntity = _hotelDbContext.CustomerRequests.Find(id);
                 if (customerRequestEntity != null)
                     _hotelDbContext.CustomerRequests.Remove(customerRequestEntity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch

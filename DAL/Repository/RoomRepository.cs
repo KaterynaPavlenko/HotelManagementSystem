@@ -89,7 +89,6 @@ namespace HotelManagementSystem.DAL.Repository
                 if (room == null) throw new NullReferenceException();
                 var entity = new RoomEntity
                 {
-                    Id = room.Id,
                     RoomDescription = room.RoomDescription,
                     RoomImage = room.RoomImage,
                     RoomNumber = room.RoomNumber,
@@ -99,7 +98,6 @@ namespace HotelManagementSystem.DAL.Repository
                     RoomStatusId = room.RoomStatusId
                 };
                 _hotelDbContext.Rooms.Add(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -128,7 +126,6 @@ namespace HotelManagementSystem.DAL.Repository
                     RoomStatusId = room.RoomStatusId
                 };
                 _hotelDbContext.Rooms.AddOrUpdate(roomEntity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -150,7 +147,6 @@ namespace HotelManagementSystem.DAL.Repository
                 if (roomEntity != null)
                 {
                     _hotelDbContext.Rooms.Remove(roomEntity);
-                    _hotelDbContext.SaveChanges();
                 }
                 return true;
             }

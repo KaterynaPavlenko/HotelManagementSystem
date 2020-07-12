@@ -63,11 +63,9 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new CustomerRequestStatusEntity
                 {
-                    Id = customerRequestStatus.Id,
                     Name = customerRequestStatus.Name
                 };
                 _hotelDbContext.CustomerRequestStatuses.Add(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -91,7 +89,6 @@ namespace HotelManagementSystem.DAL.Repository
                     Name = customerRequestStatus.Name
                 };
                 _hotelDbContext.CustomerRequestStatuses.AddOrUpdate(entity);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
@@ -112,7 +109,6 @@ namespace HotelManagementSystem.DAL.Repository
                 var status = _hotelDbContext.CustomerRequestStatuses.Find(id);
                 if (status != null)
                     _hotelDbContext.CustomerRequestStatuses.Remove(status);
-                _hotelDbContext.SaveChanges();
                 return true;
             }
             catch
