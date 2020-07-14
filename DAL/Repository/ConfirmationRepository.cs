@@ -31,8 +31,13 @@ namespace HotelManagementSystem.DAL.Repository
             var confirmations = new List<Confirmation>();
             foreach (var confirmationEntity in entities)
             {
-                var confirmation = new Confirmation(confirmationEntity.Id, confirmationEntity.RoomId,
-                    confirmationEntity.CustomerRequestId);
+                var confirmation = new Confirmation
+                {
+                    Id = confirmationEntity.CustomerRequestId,
+                    CustomerRequestId = confirmationEntity.CustomerRequestId,
+                    RoomId = confirmationEntity.RoomId,
+                    IsDeleted = confirmationEntity.IsDeleted
+                };
                 confirmations.Add(confirmation);
             }
 
@@ -51,7 +56,8 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 Id = confirmationEntity.CustomerRequestId,
                 CustomerRequestId = confirmationEntity.CustomerRequestId,
-                RoomId = confirmationEntity.RoomId
+                RoomId = confirmationEntity.RoomId,
+                IsDeleted = confirmationEntity.IsDeleted
             };
             return confirmation;
         }
@@ -67,7 +73,8 @@ namespace HotelManagementSystem.DAL.Repository
                 var entity = new ConfirmationEntity
                 {
                     CustomerRequestId = confirmation.CustomerRequestId,
-                    RoomId = confirmation.RoomId
+                    RoomId = confirmation.RoomId,
+                    IsDeleted = confirmation.IsDeleted
                 };
                 _hotelDbContext.Confirmations.Add(entity);
                 return true;
@@ -91,7 +98,8 @@ namespace HotelManagementSystem.DAL.Repository
                 {
                     Id = confirmation.CustomerRequestId,
                     CustomerRequestId = confirmation.CustomerRequestId,
-                    RoomId = confirmation.RoomId
+                    RoomId = confirmation.RoomId,
+                    IsDeleted = confirmation.IsDeleted
                 };
                 _hotelDbContext.Entry(entity).State = EntityState.Modified;
                 return true;

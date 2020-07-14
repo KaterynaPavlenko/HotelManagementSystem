@@ -45,7 +45,9 @@ namespace HotelManagementSystem.DAL.Repository
                     RoomTypeId = roomEntity.RoomTypeId,
                     RoomStatusId = roomEntity.RoomStatusId,
                     RoomType = roomEntity.RoomType.Name,
-                    RoomStatus = roomEntity.RoomStatus.Name
+                    RoomStatus = roomEntity.RoomStatus.Name,
+                    IsDeleted = roomEntity.IsDeleted
+
                 };
                 rooms.Add(room);
             }
@@ -73,7 +75,9 @@ namespace HotelManagementSystem.DAL.Repository
                 RoomTypeId = roomEntity.RoomTypeId,
                 RoomStatusId = roomEntity.RoomStatusId,
                 RoomStatus = roomEntity.RoomStatus.Name,
-                RoomType = roomEntity.RoomType.Name
+                RoomType = roomEntity.RoomType.Name,
+                IsDeleted = roomEntity.IsDeleted
+
             };
             return room;
         }
@@ -95,7 +99,9 @@ namespace HotelManagementSystem.DAL.Repository
                     RoomPriceForOneNight = room.RoomPriceForOneNight,
                     Sleeps = room.Sleeps,
                     RoomTypeId = room.RoomTypeId,
-                    RoomStatusId = room.RoomStatusId
+                    RoomStatusId = room.RoomStatusId,
+                    IsDeleted = room.IsDeleted
+
                 };
                 _hotelDbContext.Rooms.Add(entity);
                 return true;
@@ -123,7 +129,8 @@ namespace HotelManagementSystem.DAL.Repository
                     RoomPriceForOneNight = room.RoomPriceForOneNight,
                     Sleeps = room.Sleeps,
                     RoomTypeId = room.RoomTypeId,
-                    RoomStatusId = room.RoomStatusId
+                    RoomStatusId = room.RoomStatusId,
+                    IsDeleted = room.IsDeleted
                 };
                 _hotelDbContext.Rooms.AddOrUpdate(roomEntity);
                 return true;

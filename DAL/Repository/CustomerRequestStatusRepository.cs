@@ -32,7 +32,12 @@ namespace HotelManagementSystem.DAL.Repository
             foreach (var customerRequestStatusEntity in entities)
             {
                 var status =
-                    new CustomerRequestStatus(customerRequestStatusEntity.Id, customerRequestStatusEntity.Name);
+                    new CustomerRequestStatus
+                    {
+                        Id = customerRequestStatusEntity.Id,
+                        Name = customerRequestStatusEntity.Name,
+                        IsDeleted = customerRequestStatusEntity.IsDeleted
+                    };
 
                 customerRequestStatuses.Add(status);
             }
@@ -49,7 +54,11 @@ namespace HotelManagementSystem.DAL.Repository
         {
             var customerRequestStatusEntity = _hotelDbContext.CustomerRequestStatuses.Find(id);
             var customerRequestStatus =
-                new CustomerRequestStatus(customerRequestStatusEntity.Id, customerRequestStatusEntity.Name);
+                new CustomerRequestStatus{
+                    Id = customerRequestStatusEntity.Id,
+                  Name = customerRequestStatusEntity.Name,
+                  IsDeleted = customerRequestStatusEntity.IsDeleted
+                };
             return customerRequestStatus;
         }
 
@@ -63,7 +72,8 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new CustomerRequestStatusEntity
                 {
-                    Name = customerRequestStatus.Name
+                    Name = customerRequestStatus.Name,
+                    IsDeleted = customerRequestStatus.IsDeleted
                 };
                 _hotelDbContext.CustomerRequestStatuses.Add(entity);
                 return true;
@@ -86,7 +96,8 @@ namespace HotelManagementSystem.DAL.Repository
                 var entity = new CustomerRequestStatusEntity
                 {
                     Id = customerRequestStatus.Id,
-                    Name = customerRequestStatus.Name
+                    Name = customerRequestStatus.Name,
+                    IsDeleted = customerRequestStatus.IsDeleted
                 };
                 _hotelDbContext.CustomerRequestStatuses.AddOrUpdate(entity);
                 return true;

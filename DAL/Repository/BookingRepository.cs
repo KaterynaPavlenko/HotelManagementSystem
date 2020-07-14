@@ -32,9 +32,17 @@ namespace HotelManagementSystem.DAL.Repository
             var bookings = new List<Booking>();
             foreach (var bookingEntity in entities)
             {
-                var booking = new Booking(bookingEntity.Id, bookingEntity.DateFrom, bookingEntity.DateTo,
-                    bookingEntity.TotalPrice, bookingEntity.RoomId,
-                    bookingEntity.HotelUserId, bookingEntity.Payment);
+                var booking = new Booking
+                {
+                    Id = bookingEntity.Id,
+                    DateFrom = bookingEntity.DateFrom,
+                    DateTo = bookingEntity.DateTo,
+                    TotalPrice = bookingEntity.TotalPrice,
+                    RoomId = bookingEntity.RoomId,
+                    HotelUserId = bookingEntity.HotelUserId,
+                    Payment = bookingEntity.Payment,
+                    IsDeleted = bookingEntity.IsDeleted
+                };
 
 
                 bookings.Add(booking);
@@ -50,12 +58,20 @@ namespace HotelManagementSystem.DAL.Repository
         /// <returns>Booking entity</returns>
         public Booking GetById(int id)
         {
+
             var bookingEntity = _hotelDbContext.Bookings.Find(id);
 
-            var booking = new Booking(bookingEntity.Id, bookingEntity.DateFrom, bookingEntity.DateTo,
-                bookingEntity.TotalPrice,
-                bookingEntity.RoomId,
-                bookingEntity.HotelUserId, bookingEntity.Payment);
+            var booking = new Booking
+            {
+               Id = bookingEntity.Id,
+               DateFrom = bookingEntity.DateFrom, 
+               DateTo = bookingEntity.DateTo,
+              TotalPrice  = bookingEntity.TotalPrice,
+                RoomId = bookingEntity.RoomId,
+               HotelUserId = bookingEntity.HotelUserId,
+               Payment = bookingEntity.Payment,
+               IsDeleted = bookingEntity.IsDeleted
+            };
             return booking;
         }
 
@@ -74,7 +90,8 @@ namespace HotelManagementSystem.DAL.Repository
                     TotalPrice = booking.TotalPrice,
                     HotelUserId = booking.HotelUserId,
                     RoomId = booking.RoomId,
-                    Payment = booking.Payment
+                    Payment = booking.Payment,
+                    IsDeleted = booking.IsDeleted
                 };
                 _hotelDbContext.Bookings.Add(entity);
                 return true;
@@ -96,12 +113,14 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new BookingEntity
                 {
+                    Id = booking.Id,
                     DateTo = booking.DateTo,
                     DateFrom = booking.DateFrom,
                     TotalPrice = booking.TotalPrice,
                     HotelUserId = booking.HotelUserId,
                     RoomId = booking.RoomId,
-                    Payment = booking.Payment
+                    Payment = booking.Payment,
+                    IsDeleted = booking.IsDeleted
                 };
                 _hotelDbContext.Bookings.AddOrUpdate(entity);
                 return true;

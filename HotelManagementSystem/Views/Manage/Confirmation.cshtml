@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.RoomViewModel>
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+<div class="container">
+    <h2>Confirmation</h2>
+
+    <div class="container ">
+        <div class="row text-center text-lg-left">
+
+            @foreach (var item in Model)
+            {
+                using (Html.BeginForm("Confirmation", "Manage",
+                    new {ViewBag.ReturnUrl},
+                    FormMethod.Post, new {@class = "form-row col-md-4"}))
+                {
+                    <div class="card mb-4 shadow">
+                        <img class="card-img-top" src="@Url.Content(item.RoomImage)" alt="@item.RoomNumber" style="display: block; height: 250px; width: 100%;">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                Room:
+                                @Html.DisplayFor(modelItem => item.RoomNumber)
+                            </h3>
+                            <p class="card-text">
+                                Room Price For One Night:
+                                @Html.DisplayFor(modelItem => item.RoomPriceForOneNight)
+                            </p>
+                            <p class="card-text">
+                                Description:
+                                @Html.DisplayFor(modelItem => item.RoomDescription)
+                            </p>
+
+                            <p class="card-text">
+                                Room Status:
+
+                                @Html.DisplayFor(modelItem => item.RoomStatus)
+                            </p>
+                            <p class="card-text">
+                                Sleeps:
+                                @Html.DisplayFor(modelItem => item.Sleeps)
+
+                            </p>
+                            <div class="btn-group">
+                                @Html.ActionLink("Reserve A Room", "Booking", "Booking", new {roomId = item.Id, roomNumber = item.RoomNumber}, null)
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

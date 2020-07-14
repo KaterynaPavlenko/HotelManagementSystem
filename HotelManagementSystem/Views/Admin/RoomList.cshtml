@@ -1,0 +1,78 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<HotelManagementSystem.Models.RoomViewModel>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
+@{
+    ViewBag.Title = "RoomList";
+}
+<div class="container">
+    <h2>RoomList</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "CreateRoom")
+    </p>
+
+    @using (Html.BeginForm("RoomList", "Admin", FormMethod.Get))
+    {
+        <p>
+            Find by room number: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search"/>
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                RoomDescription:
+            </th>
+            <th>
+                @Html.ActionLink("RoomNumber", "RoomList", new {sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter})
+            </th>
+            <th>
+                @Html.ActionLink("RoomPriceForOneNight", "RoomList", new {sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter})
+            </th>
+            <th>
+                Sleeps:
+            </th>
+
+            <th>
+                RoomType:
+            </th>
+            <th>
+                RoomStatus:
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomPriceForOneNight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sleeps)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomStatus)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditRoom", new {id = item.Id})
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br/>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("RoomList", new {page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
+</div>

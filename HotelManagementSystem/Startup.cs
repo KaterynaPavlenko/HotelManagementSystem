@@ -1,7 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using HotelManagementSystem;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(HotelManagementSystem.Startup))]
+[assembly: OwinStartupAttribute(typeof(Startup))]
+
 namespace HotelManagementSystem
 {
     public partial class Startup

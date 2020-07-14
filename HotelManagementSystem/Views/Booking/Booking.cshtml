@@ -1,0 +1,52 @@
+﻿@model HotelManagementSystem.Models.BookingViewModel
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+<div class="container">
+    <div class="card border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row justify-content-center">
+                <div class="p-5">
+                    <div class="text-center justify-content-center">
+                        <h1 class="h4 text-gray mb-4">Booking.</h1>
+                        @if (ViewBag.ErrorMessage != null)
+                        {
+                            <p class="text-danger"> @ViewBag.ErrorMessage</p>
+                        }
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group ">
+                                <hr/>
+                                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                                <div class="form-group">
+                                    <div class="text-center ">
+                                        @Html.LabelFor(model => model.DateFrom)
+                                    </div>
+
+                                    @Html.TextBoxFor(model => model.DateFrom, new {type = "date", min = DateTime.Now.ToString("yyyy-MM-dd")})
+                                    @Html.ValidationMessageFor(model => model.DateFrom, "", new {@class = "text-danger"})
+                                </div>
+
+                                <div class="form-group ">
+                                    <div class="text-center ">
+                                        @Html.LabelFor(model => model.DateTo)
+                                    </div>
+
+                                    @Html.TextBoxFor(model => model.DateTo, new {type = "date", min = DateTime.Now.ToString("yyyy-MM-dd")})
+                                    @Html.ValidationMessageFor(model => model.DateTo, "", new {@class = "text-danger"})
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-success" type="submit" value="Reserve A Room"/>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

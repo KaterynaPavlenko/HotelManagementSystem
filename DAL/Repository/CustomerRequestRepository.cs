@@ -45,7 +45,8 @@ namespace HotelManagementSystem.DAL.Repository
                     HotelUserId = requestEntity.HotelUserId,
                     CustomerRequestStatusId = requestEntity.CustomerRequestStatusId,
                     CustomerRequestStatus = requestEntity.CustomerRequestStatus.Name,
-                    RoomType = requestEntity.RoomType.Name
+                    RoomType = requestEntity.RoomType.Name,
+                    IsDeleted = requestEntity.IsDeleted
                 };
                 requests.Add(request);
             }
@@ -71,7 +72,8 @@ namespace HotelManagementSystem.DAL.Repository
                 HotelUserId = requestEntity.HotelUserId,
                 CustomerRequestStatusId = requestEntity.CustomerRequestStatusId,
                 CustomerRequestStatus = requestEntity.CustomerRequestStatus.Name,
-                RoomType = requestEntity.RoomType.Name
+                RoomType = requestEntity.RoomType.Name,
+                IsDeleted = requestEntity.IsDeleted
             };
             return request;
         }
@@ -91,7 +93,8 @@ namespace HotelManagementSystem.DAL.Repository
                     HotelUserId = customerRequest.HotelUserId,
                     RoomTypeId = customerRequest.RoomTypeId,
                     CustomerRequestStatusId = customerRequest.CustomerRequestStatusId,
-                    Sleeps = customerRequest.Sleeps
+                    Sleeps = customerRequest.Sleeps,
+                    IsDeleted = customerRequest.IsDeleted
                 };
                 _hotelDbContext.CustomerRequests.Add(entity);
                 return true;
@@ -119,7 +122,8 @@ namespace HotelManagementSystem.DAL.Repository
                     HotelUserId = customerRequest.HotelUserId,
                     RoomTypeId = customerRequest.RoomTypeId,
                     CustomerRequestStatusId = customerRequest.CustomerRequestStatusId,
-                    Sleeps = customerRequest.Sleeps
+                    Sleeps = customerRequest.Sleeps,
+                    IsDeleted = customerRequest.IsDeleted
                 };
                 _hotelDbContext.CustomerRequests.AddOrUpdate(entity);
                 return true;

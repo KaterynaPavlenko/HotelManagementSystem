@@ -1,0 +1,60 @@
+﻿@model IEnumerable<HotelManagementSystem.BLL.Data.Room>
+
+@{
+    ViewBag.Title = "Send Request";
+}
+
+<div class="container pt-4">
+    <div class="row text-center text-lg-left">
+
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("ChooseHotelRoom", "Manager",
+                new
+                {
+                    ViewBag.ReturnUrl
+                },
+                FormMethod.Post, new
+                {
+                    @class = "form-row col-md-4"
+                }))
+            {
+                <div class="card mb-4 shadow">
+                    <img class="card-img-top" src="@Url.Content(item.RoomImage)" alt="@item.RoomNumber" style="display: block; height: 250px; width: 100%;">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Room:
+                            @Html.DisplayFor(modelItem => item.RoomNumber)
+                        </h4>
+                        <p class="card-text">
+                            Price For One Night:
+                            @Html.DisplayFor(modelItem => item.RoomPriceForOneNight)
+                        </p>
+                        <p class="card-text">
+                            Description:
+                            @Html.DisplayFor(modelItem => item.RoomDescription)
+                        </p>
+
+                        <p class="card-text">
+                            Status:
+                            @Html.DisplayFor(modelItem => item.RoomStatus)
+                        </p>
+                        <p class="card-text">
+                            Sleeps:
+                            @Html.DisplayFor(modelItem => item.Sleeps)
+
+                        </p>
+                        <p class="card-text">
+                            Room Type:
+                            @Html.DisplayFor(modelItem => item.RoomType)
+
+                        </p>
+                        @Html.ActionLink("Reply to request", "AskedToConfirm", new {roomId = item.Id, ViewBag.RequestId})
+
+                    </div>
+
+                </div>
+            }
+        }
+    </div>
+</div>

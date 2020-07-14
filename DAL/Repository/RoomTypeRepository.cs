@@ -34,7 +34,8 @@ namespace HotelManagementSystem.DAL.Repository
                 var roomType = new RoomType
                 {
                     Id = roomTypeEntity.Id,
-                    Name = roomTypeEntity.Name
+                    Name = roomTypeEntity.Name,
+                    IsDeleted = roomTypeEntity.IsDeleted
                 };
 
                 roomTypes.Add(roomType);
@@ -50,11 +51,13 @@ namespace HotelManagementSystem.DAL.Repository
         /// <returns>Room type object</returns>
         public RoomType GetById(int id)
         {
-            var roomEntity = _hotelDbContext.RoomTypes.Find(id);
+            var roomType = _hotelDbContext.RoomTypes.Find(id);
             var room = new RoomType
             {
-                Id = roomEntity.Id,
-                Name = roomEntity.Name
+                Id = roomType.Id,
+                Name = roomType.Name,
+                IsDeleted = roomType.IsDeleted
+
             };
             return room;
         }
@@ -69,7 +72,9 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new RoomTypeEntity
                 {
-                    Name = roomType.Name
+                    Name = roomType.Name,
+                    IsDeleted = roomType.IsDeleted
+
                 };
                 _hotelDbContext.RoomTypes.Add(entity);
                 return true;
@@ -92,7 +97,9 @@ namespace HotelManagementSystem.DAL.Repository
                 var entity = new RoomTypeEntity
                 {
                     Id = roomType.Id,
-                    Name = roomType.Name
+                    Name = roomType.Name,
+                    IsDeleted = roomType.IsDeleted
+
                 };
                 _hotelDbContext.RoomTypes.AddOrUpdate(entity);
                 return true;

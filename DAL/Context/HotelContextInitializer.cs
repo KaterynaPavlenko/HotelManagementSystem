@@ -15,17 +15,17 @@ namespace HotelManagementSystem.DAL.Context
             var userManager = new UserManager<HotelUserEntity>(new UserStore<HotelUserEntity>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             //create a new role Administrator
-            var newRoleAdmin = new IdentityRole("Administrator");
+            var newRoleAdmin = new IdentityRole("administrator");
             var roleCreateResult = roleManager.Create(newRoleAdmin);
 
             if (!roleCreateResult.Succeeded) throw new Exception(string.Join("; ", roleCreateResult.Errors));
             //create a new role Manager
-            var newRoleManager = new IdentityRole("Manager");
+            var newRoleManager = new IdentityRole("manager");
             roleCreateResult = roleManager.Create(newRoleManager);
 
             if (!roleCreateResult.Succeeded) throw new Exception(string.Join("; ", roleCreateResult.Errors));
             //create a new role Client
-            var newRoleClient = new IdentityRole("Client");
+            var newRoleClient = new IdentityRole("client");
             roleCreateResult = roleManager.Create(newRoleClient);
             if (!roleCreateResult.Succeeded) throw new Exception(string.Join("; ", roleCreateResult.Errors));
             //create a new user as a admin
@@ -66,31 +66,36 @@ namespace HotelManagementSystem.DAL.Context
                 new RoomTypeEntity
                 {
                     Id = 1,
-                    Name = "Standart"
+                    Name = "All"
                 },
                 new RoomTypeEntity
                 {
                     Id = 2,
-                    Name = "Superior"
+                    Name = "Standart"
                 },
                 new RoomTypeEntity
                 {
                     Id = 3,
-                    Name = "Studio"
+                    Name = "Superior"
                 },
                 new RoomTypeEntity
                 {
                     Id = 4,
-                    Name = "Business Room"
+                    Name = "Studio"
                 },
                 new RoomTypeEntity
                 {
                     Id = 5,
-                    Name = "Apartment"
+                    Name = "Business Room"
                 },
                 new RoomTypeEntity
                 {
                     Id = 6,
+                    Name = "Apartment"
+                },
+                new RoomTypeEntity
+                {
+                    Id = 7,
                     Name = "President Suites"
                 }
             };
@@ -145,21 +150,26 @@ namespace HotelManagementSystem.DAL.Context
                 new RoomStatusEntity
                 {
                     Id = 1,
-                    Name = "Booked"
+                    Name = "All"
                 },
                 new RoomStatusEntity
                 {
                     Id = 2,
-                    Name = "Free"
+                    Name = "Booked"
                 },
                 new RoomStatusEntity
                 {
                     Id = 3,
-                    Name = "Booked up"
+                    Name = "Free"
                 },
                 new RoomStatusEntity
                 {
                     Id = 4,
+                    Name = "Booked up"
+                },
+                new RoomStatusEntity
+                {
+                    Id = 5,
                     Name = "Unavailable"
                 }
             };
@@ -175,7 +185,7 @@ namespace HotelManagementSystem.DAL.Context
                     Sleeps = 2,
                     RoomImage = "~/Content/Image/room1.jpg",
                     RoomType = roomTypes.ElementAt(0),
-                    RoomStatus = bookingStatusEntities.ElementAt(1)
+                    RoomStatus = bookingStatusEntities.ElementAt(2)
                 },
                 new RoomEntity
                 {
@@ -185,7 +195,7 @@ namespace HotelManagementSystem.DAL.Context
                     RoomImage = "~/Content/Image/room2.jpg",
                     Sleeps = 1,
                     RoomType = roomTypes.ElementAt(1),
-                    RoomStatus = bookingStatusEntities.ElementAt(1)
+                    RoomStatus = bookingStatusEntities.ElementAt(2)
                 },
                 new RoomEntity
                 {
@@ -195,7 +205,7 @@ namespace HotelManagementSystem.DAL.Context
                     RoomImage = "~/Content/Image/room3.jpg",
                     Sleeps = 1,
                     RoomType = roomTypes.ElementAt(1),
-                    RoomStatus = bookingStatusEntities.ElementAt(1)
+                    RoomStatus = bookingStatusEntities.ElementAt(2)
                 },
                 new RoomEntity
                 {
@@ -205,7 +215,7 @@ namespace HotelManagementSystem.DAL.Context
                     RoomImage = "~/Content/Image/room4.jpg",
                     Sleeps = 3,
                     RoomType = roomTypes.ElementAt(1),
-                    RoomStatus = bookingStatusEntities.ElementAt(1)
+                    RoomStatus = bookingStatusEntities.ElementAt(2)
                 },
                 new RoomEntity
                 {
@@ -215,7 +225,7 @@ namespace HotelManagementSystem.DAL.Context
                     RoomImage = "~/Content/Image/room5.jpg",
                     Sleeps = 4,
                     RoomType = roomTypes.ElementAt(3),
-                    RoomStatus = bookingStatusEntities.ElementAt(1)
+                    RoomStatus = bookingStatusEntities.ElementAt(2)
                 },
                 new RoomEntity
                 {

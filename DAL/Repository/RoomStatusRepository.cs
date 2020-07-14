@@ -31,8 +31,13 @@ namespace HotelManagementSystem.DAL.Repository
             var roomStatuses = new List<RoomStatus>();
             foreach (var roomStatusEntity in entities)
             {
-                var roomStatus = new RoomStatus(roomStatusEntity.Id, roomStatusEntity.Name);
+                var roomStatus = new RoomStatus
+                {
+                    Id = roomStatusEntity.Id,
+                    IsDeleted = roomStatusEntity.IsDeleted,
+                    Name = roomStatusEntity.Name
 
+                };
                 roomStatuses.Add(roomStatus);
             }
 
@@ -47,7 +52,13 @@ namespace HotelManagementSystem.DAL.Repository
         public RoomStatus GetById(int id)
         {
             var roomStatusEntity = _hotelDbContext.RoomStatuses.Find(id);
-            var roomStatus = new RoomStatus(roomStatusEntity.Id, roomStatusEntity.Name);
+            var roomStatus = new RoomStatus
+            {
+                Id = roomStatusEntity.Id,
+                IsDeleted = roomStatusEntity.IsDeleted ,
+                Name = roomStatusEntity.Name
+
+            };
             return roomStatus;
         }
 
@@ -61,7 +72,9 @@ namespace HotelManagementSystem.DAL.Repository
             {
                 var entity = new RoomStatusEntity
                 {
-                    Name = roomStatus.Name
+                    Name = roomStatus.Name,
+                    IsDeleted = roomStatus.IsDeleted
+
                 };
                 _hotelDbContext.RoomStatuses.Add(entity);
                 return true;
@@ -84,7 +97,9 @@ namespace HotelManagementSystem.DAL.Repository
                 var entity = new RoomStatusEntity
                 {
                     Id = roomStatus.Id,
-                    Name = roomStatus.Name
+                    Name = roomStatus.Name,
+                    IsDeleted = roomStatus.IsDeleted
+
                 };
                 _hotelDbContext.RoomStatuses.AddOrUpdate(entity);
                 return true;

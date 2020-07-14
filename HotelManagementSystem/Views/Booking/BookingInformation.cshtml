@@ -1,0 +1,70 @@
+﻿@model HotelManagementSystem.Models.BookingViewModel
+@{
+    ViewBag.Title = "BookingInformation";
+}
+
+<div class="container">
+    <div class="card border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row justify-content-center">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray mb-4">Booking Information</h1>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateFrom)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateTo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RoomNumber)
+                                </th>
+                                <th>
+                                    <label>Number of booked days</label>
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => model.DateFrom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.DateTo)
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(model => model.TotalPrice)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.RoomNumber)
+                                </td>
+                                <td>
+                                    @ViewBag.AllBookingDays
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div class="text-center">
+                            <p>
+                                Card payment 1234 2534 2132 24124
+                            </p>
+                            <p>
+                                On payment issues please call
+                                <abbr title="Phone">P:+380123456789</abbr>
+
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.BookingViewModel>
+
+@{
+    ViewBag.Title = "ChangeReservationStatus";
+}
+
+
+<div class="container">
+    <div class="card border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row justify-content-center">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray mb-4">Customer Request</h1>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateFrom)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateTo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RoomId)
+                                </th>
+                                <th>
+
+                                    @Html.DisplayNameFor(model => model.RoomNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Payment)
+
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    Phone:
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                </th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.DateFrom.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @item.DateTo.ToShortDateString()
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                                    </td>
+                                    <td>
+                                        @if (item.Payment)
+                                        {
+                                            <p>Paid</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Not paid</p>
+                                        }
+                                        @Html.ValidationMessageFor(modelItem => item.Payment, "", new {@class = "text-danger"})
+
+                                    </td>
+                                    @foreach (var user in ViewBag.Users)
+                                    {
+                                        if (user.Id == item.HotelUserId)
+                                        {
+                                            <td> @user.Email</td>
+                                            <td> @user.PhoneNumber</td>
+                                            <td> @user.FirstName</td>
+                                            <td> @user.LastName</td>
+                                        }
+                                    }
+                                    <td>
+                                        @if (!item.Payment)
+                                        {
+                                            @Html.ActionLink("Paid", "ChangeReservationStatus", new {id = item.Id})
+                                        }
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                        <div>
+                            @Html.ActionLink("Back", "Dashboard", "Manager")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

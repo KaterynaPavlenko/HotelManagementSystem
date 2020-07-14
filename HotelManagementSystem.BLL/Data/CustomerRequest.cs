@@ -13,5 +13,7 @@ namespace HotelManagementSystem.BLL.Data
         public int RoomTypeId { get; set; }
         public int CustomerRequestStatusId { get; set; }
         public string HotelUserId { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

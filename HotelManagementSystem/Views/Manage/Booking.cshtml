@@ -1,0 +1,70 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.BookingViewModel>
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+<div class="container">
+    <div class="card border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <div class="row justify-content-center">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray mb-4">Booking</h1>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateFrom)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateTo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RoomNumber)
+                                </th>
+                                <th>
+
+                                    @Html.DisplayNameFor(model => model.Payment)
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateFrom)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateTo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                                    </td>
+                                    <td>
+                                        @if (item.Payment == false)
+                                        {
+                                            <p>No payment</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Paid</p>
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

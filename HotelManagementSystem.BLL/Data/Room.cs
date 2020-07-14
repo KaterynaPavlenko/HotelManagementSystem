@@ -12,5 +12,7 @@
         public string RoomStatus { get; set; }
         public int RoomTypeId { get; set; }
         public int RoomStatusId { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }
